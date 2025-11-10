@@ -1,9 +1,8 @@
+import Header from '../Components/Header/Header.jsx'
+
 function User () {
     return (
-        <div className="user-page">
-            <h1>User Page</h1>
-            <p>Welcome to your user dashboard.</p>
-        </div>
+        <Header/>
     )
 }
 
