@@ -6,7 +6,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 function SignIn() {
     return (
          <>
-            <main className="bg-dark">
+            <main className="main bg-dark">
                 <section className="sign-in-content">
                     <FontAwesomeIcon icon={faCircleUser} className="form-icon"/>
                     <h1>Sign In</h1>

@@ -7,7 +7,7 @@ import logo from '../assets/argentBankLogo.png'
 
 function Header () {
     return (
-        <header className="header">
+        <header>
             <nav className="header__nav">
                 <Link to="/" className="header__nav__link">
                     <img src={logo} alt="Argent Bank Logo" className='header__nav__link--logo'/>
