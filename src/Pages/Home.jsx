@@ -1,6 +1,7 @@
 import Header from '../Components/Header.jsx'
 import Hero from '../Components/Hero.jsx'
 import Feature from '../Components/Feature.jsx'
+import Footer from '../Components/Footer.jsx'   
 import image1 from '../assets/icon-chat.png'
 import image2 from '../assets/icon-money.png'
 import image3 from '../assets/icon-security.png'
@@ -29,6 +30,7 @@ function Home() {
                         text="We use top of the line encryption to make sure your data and money
             is always safe."/>
                 </section>
+                <Footer/>
             </main>
         </>
     )
