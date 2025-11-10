@@ -1,10 +1,13 @@
 import React from 'react'
 import '../css/user.css'
 import Account from '../Components/Account.jsx'
+import Header from '../Components/Header.jsx'
 
 function User () {
     return (
         <>
+        <Header
+        title="Tony"/>
         <main className="bg-dark">
             <div className="header">
                 <h1>Welcome back<br />Tony Jarvis!</h1>

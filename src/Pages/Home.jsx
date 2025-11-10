@@ -1,7 +1,6 @@
-import Header from '../Components/Header.jsx'
 import Hero from '../Components/Hero.jsx'
 import Feature from '../Components/Feature.jsx'
-import Footer from '../Components/Footer.jsx'   
+import Header from '../Components/Header.jsx'
 import image1 from '../assets/icon-chat.png'
 import image2 from '../assets/icon-money.png'
 import image3 from '../assets/icon-security.png'
@@ -10,6 +9,7 @@ import image3 from '../assets/icon-security.png'
 function Home() {
     return (
         <>
+        <Header title="Sign In"/>
             <main>
                 <Hero />
                 <section className="features">
@@ -35,10 +35,3 @@ function Home() {
 }
 
 export default Home
-
-/*
-<div className="home">
-            <h1>Welcome to Argent Bank</h1>
-            <p>Your trusted partner in financial services.</p>
-        </div>
-*/

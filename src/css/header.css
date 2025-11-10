@@ -5,6 +5,16 @@ header {
     background-color: #fff;;
 }
 
+header div {
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+}
+
+.NavLinks {
+    margin-left : 1rem;
+}
+
 .header__nav {
     display: flex;
     justify-content: space-between;
@@ -16,11 +26,6 @@ header {
     color: #2c3e50;
     display: flex;
     align-items: center;
-}
-
-.header__nav__link--user-icon {
-    font-size: 1.5rem;
-    margin-right : 0.5rem;
 }
 
 .header__nav__link--logo {
