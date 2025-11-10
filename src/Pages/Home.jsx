@@ -1,8 +1,14 @@
 import Header from '../Components/Header.jsx'
+import Hero from '../Components/Hero.jsx'
 
 function Home() {
     return (
-        <Header />
+        <>
+            <Header />
+            <main>
+                <Hero />
+            </main>
+        </>
     )
 }
 
