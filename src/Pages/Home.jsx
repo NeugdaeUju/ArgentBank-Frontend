@@ -10,7 +10,6 @@ import image3 from '../assets/icon-security.png'
 function Home() {
     return (
         <>
-            <Header />
             <main>
                 <Hero />
                 <section className="features">
@@ -30,7 +29,6 @@ function Home() {
                         text="We use top of the line encryption to make sure your data and money
             is always safe."/>
                 </section>
-                <Footer/>
             </main>
         </>
     )
