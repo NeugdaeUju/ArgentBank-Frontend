@@ -1,0 +1,23 @@
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+
+.form-icon {
+    display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+    font-size: 14px;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-dark {
+  background-color: #12002b;
+  display: flex;;
+}

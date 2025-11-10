@@ -18,7 +18,7 @@ function Home() {
                         image={image1}
                         title="You are our #1 priority"
                         text="Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes."/>
+                            24/7 chat or through a phone call in less than 5 minutes."/>
                     <Feature 
                         image={image2}
                         title="More savings means higher rates"
@@ -27,7 +27,7 @@ function Home() {
                         image={image3}
                         title="Security you can trust"
                         text="We use top of the line encryption to make sure your data and money
-            is always safe."/>
+                            is always safe."/>
                 </section>
             </main>
         </>
