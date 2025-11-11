@@ -10,6 +10,8 @@ function Dropdown ({date, description, amount, balance}) {
     const toggleDropdown = () => setIsOpen(prev => !prev);
     const [isEdit , setIsEdit] = useState (false);
     const toggleCategoryEdit = () => setIsEdit(prev =>!prev)
+    const [isNoteEdit, setIsNoteEdit] = useState (false);
+    const toggleNoteEdit = () => setIsNoteEdit(prev => !prev)
 
     return (
       <div className="dropdown">
@@ -55,7 +57,14 @@ function Dropdown ({date, description, amount, balance}) {
                 <p className="content-name">Note</p>
                 <div  className="content-value">
                     <p>lorem ispum</p>
-                    <FontAwesomeIcon icon={faPencil} className="faPencil"/>
+                    <FontAwesomeIcon icon={faPencil} 
+                    onClick={toggleNoteEdit}
+                        className={`dropdown__edit ${isNoteEdit ? "edit" : ""} faPencil`}
+                       aria-expanded={isNoteEdit}/>
+                    <input type="text"
+                            min="10"
+                            max="44"
+                            className={`dropdown__content ${isNoteEdit ? "visible" : "hidden"}`}/>
                 </div>
             </div>
         </div>
