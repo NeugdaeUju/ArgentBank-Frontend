@@ -4,14 +4,23 @@ import {useState} from 'react'
 function EditNameButton() {
     const [isEditing, setIsEditing] = useState(false)
     const toggleEdit = () => setIsEditing (prev => !prev)
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setIsEditing(false)
+    }
+    const handleSave = (e) => {
+        e.preventDefault();
+        /* Ajouter l'API */
+        setIsEditing(false);
+    }
 
     return( 
         <>
             <button
-                className={`edit-button ${isEditing ? 'editing' : ''}`}
+                className={`edit-button ${isEditing ? 'editing' : 'unediting'}`}
                 onClick={toggleEdit}>
                 Edit Name</button>
-            <form class="edit-name-form">
+            <form class={`edit-name-form ${isEditing ? "visible" : "hidden"}`}>
                 <div className="input-group">
                     <label for="username">User name</label>
                     <input type="text" id="username"/>
@@ -25,8 +34,12 @@ function EditNameButton() {
                     <input type="text" disabled id="lastname" placeholder="Stark"/>
                 </div>
                 <div className='button-container'>
-                    <button type="submit" className="edit-button option">Save</button>
-                    <button className="edit-button option">Cancel</button>
+                    <button
+                        className="edit-button option"
+                        onClick={handleSave}>Save</button>
+                    <button 
+                        className="edit-button option"
+                        onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
         </>

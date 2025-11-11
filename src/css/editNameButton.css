@@ -38,7 +38,9 @@ input:disabled {
     margin-bottom : 10px;
 }
 
-
+.editing {
+    display : none;
+}
 
 .option {
   border-color: #00bc77;
