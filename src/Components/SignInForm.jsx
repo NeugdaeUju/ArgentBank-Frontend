@@ -17,7 +17,7 @@ function SignInForm() {
             <input type="checkbox" id="remember-me" />
             <label for="remember-me" >Remember me</label>
           </div>
-           <Link to="./user" className="sign-in-button">Sign In</Link>
+           <Link to="../user" className="sign-in-button">Sign In</Link>
         </form>
     )
 }
