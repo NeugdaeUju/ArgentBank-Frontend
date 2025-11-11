@@ -8,6 +8,8 @@ import '../css/dropdown.css'
 function Dropdown ({date, description, amount, balance}) {
     const  [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => setIsOpen(prev => !prev);
+    const [isEdit , setIsEdit] = useState (false);
+    const toggleCategoryEdit = () => setIsEdit(prev =>!prev)
 
     return (
       <div className="dropdown">
@@ -32,7 +34,20 @@ function Dropdown ({date, description, amount, balance}) {
                 <p className="content-name">Category</p>
                 <div className="content-value">
                     <p>Food</p>
-                    <FontAwesomeIcon icon={faPencil} className="faPencil"/>
+                    <FontAwesomeIcon icon={faPencil} 
+                        onClick={toggleCategoryEdit}
+                        className={`dropdown__edit ${isEdit ? "edit" : ""} faPencil`}
+                       aria-expanded={isEdit} />
+                    <div>
+                        <select
+                            className={`dropdown__content ${isEdit ? "visible" : "hidden"}`}>
+                            <option>Food</option>
+                            <option>Bill</option>
+                            <option>Activities</option>
+                            <option>Other</option>
+                            <option>Education</option>
+                        </select>
+                    </div>
                 </div>
                 
             </div>
