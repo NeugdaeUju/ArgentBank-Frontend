@@ -17,15 +17,21 @@ function User () {
             <Account 
                 title="Argent Bank Checking (x8349)"
                 price="$2,082.79"
-                balance="Available Balance"/>
+                balance="Available Balance"
+                button="View transactions"
+                link="/user/transaction"/>
             <Account 
                 title="Argent Bank Savings (x6712)"
                 price="$10,928.42"
-                balance="Available Balance"/>
+                balance="Available Balance"
+                button="View transactions"
+                link="/user/transaction"/>
             <Account 
                 title="Argent Bank Credit Card (x8349)"
                 price="$184.30"
-                balance="Current Balance"/>
+                balance="Current Balance"
+                button="View transactions"
+                link="/user/transaction"/>
         </main>
         </>
     )

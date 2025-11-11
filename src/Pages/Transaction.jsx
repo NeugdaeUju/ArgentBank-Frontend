@@ -13,7 +13,9 @@ function Transaction() {
                 <Account 
                     title="Argent Bank Checking (x8349)"
                     price="$2,082.79"
-                    balance="Available Balance"/>
+                    balance="Available Balance"
+                    button="Back to User page"
+                    link="/user"/>
                 <section>
                     <DropDown
                         date="27/02/20"
