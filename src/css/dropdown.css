@@ -62,15 +62,8 @@
     cursor : pointer;
 }
 
-select {
-    background-color: #00bc77;
-    color : #e5E5E5;
-    border : none;
-    margin-left: 10px;
-    font-size : 1rem;
-}
-
-input[type="text"] {
+.dropdown__content.visible input[type="text"] {
+    padding : 0;
     background-color: #e5E5E5;
     margin-left : 10px;
     font-size : 1rem;
@@ -78,10 +71,11 @@ input[type="text"] {
     border-radius : 3px;
 }
 
-.dropdown__content.visible input {
-    padding : 0;
-}
-
 .dropdown__content.visible select {
     padding : 0;
+    background-color: #00bc77;
+    color : #e5E5E5;
+    border : none;
+    margin-left: 10px;
+    font-size : 1rem;
 }
