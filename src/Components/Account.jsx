@@ -11,7 +11,7 @@ function Account ({ title, price , balance }) {
                     <p className="account-amount-description">{balance}</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button"><Link to="/transaction">View transactions</Link></button>
+                    <button className="transaction-button"><Link to="/user/transaction">View transactions</Link></button>
                     </div>
             </section>
         </>
