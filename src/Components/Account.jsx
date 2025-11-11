@@ -1,6 +1,7 @@
 import '../css/account.css'
+import { Link } from 'react-router-dom'
 
-function Account ({ title, price , balance }) {
+function Account ({ title, price , balance, button, link }) {
     return (
         <>
             <section className="account">
@@ -10,7 +11,7 @@ function Account ({ title, price , balance }) {
                     <p className="account-amount-description">{balance}</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <button className="transaction-button"><Link to={link}>{button}</Link></button>
                     </div>
             </section>
         </>
