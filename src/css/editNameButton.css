@@ -42,6 +42,7 @@ input:disabled {
     display : none;
 }
 
+
 .option {
   border-color: #00bc77;
   background-color: #00bc77;
@@ -57,4 +58,16 @@ input:disabled {
   justify-content: center;
   align-items: center;
   gap : 30px;
+}
+
+.edit-name-form.hidden { 
+    display: none; 
+}
+
+.edit-name-form.visible {
+    display: block;
+}
+
+.option.closing {
+    display : none;
 }

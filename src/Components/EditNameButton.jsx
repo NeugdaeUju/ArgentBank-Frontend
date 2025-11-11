@@ -38,7 +38,7 @@ function EditNameButton() {
                         className="edit-button option"
                         onClick={handleSave}>Save</button>
                     <button 
-                        className="edit-button option"
+                        className={`edit-button option ${isEditing ? "" : "closing"} `}
                         onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
