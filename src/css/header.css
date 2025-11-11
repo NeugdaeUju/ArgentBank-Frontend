@@ -1,0 +1,42 @@
+header {
+    padding: 5px 20px;
+    width: 100vw;
+    box-sizing: border-box;
+    background-color: #fff;;
+}
+
+header div {
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+}
+
+.NavLinks {
+    margin-left : 1rem;
+}
+
+.header__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__nav__link {
+    font-weight: bold;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+}
+
+.header__nav__link--logo {
+    max-width: 100%;
+    width: 200px;
+}
+
+.sign-in {
+    margin-right : 0.5rem;
+}
+
+.sign-in:hover {
+    text-decoration: underline;
+}
