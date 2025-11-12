@@ -1,5 +1,7 @@
 import '../css/EditNameButton.css'
-import {useState} from 'react'
+import {useState , useEffect} from 'react'
+import {useDispatch , useSelector} from'react-redux'
+import {userProfile} from '../Slices/userSlice'
 
 function EditNameButton() {
     const [isEditing, setIsEditing] = useState(false)
@@ -14,6 +16,16 @@ function EditNameButton() {
         setIsEditing(false);
     }
 
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.info);
+    const token = useSelector((state) => state.auth.token)
+
+    useEffect(() => {
+        if (token) {
+            dispatch(userProfile(token))
+        }
+    }, [token, dispatch])
+
     return( 
         <>
             <button
@@ -23,15 +35,15 @@ function EditNameButton() {
             <form class={`edit-name-form ${isEditing ? "visible" : "hidden"}`}>
                 <div className="input-group">
                     <label for="username">User name</label>
-                    <input type="text" id="username"/>
+                    <input type="text" id="username" placeholder={user.userName}/>
                 </div>
                 <div className="input-group">
-                    <label for="firstname">First name</label> /* Utiliser le reducer user.info */
-                    <input type="text" disabled id="firstname" placeholder="Tony"/>
+                    <label for="firstname">First name</label>
+                    <input type="text" disabled id="firstname" value={user.firstName}/>
                 </div>
                 <div className="input-group">
-                    <label for="lastname">Last name</label> /* Utiliser le reducer user.info */
-                    <input type="text" disabled id="lastname" placeholder="Stark"/>
+                    <label for="lastname">Last name</label>
+                    <input type="text" disabled id="lastname" value={user.lastName}/>
                 </div>
                 <div className='button-container'>
                     <button
