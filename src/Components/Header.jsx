@@ -1,13 +1,23 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 import React from 'react'
 import '../css/Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import logo from '../assets/argentBankLogo.png'
+import {logout} from "../Slices/logoutUserSlices"
 
 function Header ({title, hideSignOutOn = ['/SignIn', '/']}) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const location = useLocation();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/')
+    }
+
     const showSignOut = !hideSignOutOn.includes(location.pathname)
     return (
         <header>
@@ -21,9 +31,10 @@ function Header ({title, hideSignOutOn = ['/SignIn', '/']}) {
                         <FontAwesomeIcon icon={faCircleUser} className='header__nav__link--user-icon'/>{title}
                     </Link>
                     {showSignOut && (
-                    <Link to="/" className='header__nav__link sign-out'>
+                    <button className='header__nav__link sign-out'
+                            onClick={handleLogout}>
                         <FontAwesomeIcon icon={faRightFromBracket} className='header__nav__link--user-icon'/>Sign Out
-                    </Link>
+                    </button>
                     )}
                 </div>
             </nav>
