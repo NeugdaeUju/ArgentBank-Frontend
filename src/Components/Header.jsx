@@ -1,19 +1,29 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import {useEffect} from 'react'
 import '../css/Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/argentBankLogo.png';
 import { logout } from '../Slices/loginUserSlices';
+import { clearUser, userProfile } from '../Slices/userSlice';
 
-function Header({ title, hideSignOutOn = ['/SignIn', '/'] }) {
+function Header({hideSignOutOn = ['/SignIn', '/'] }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useSelector((state) => state.user.info)
   const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(userProfile(token))
+    }
+  }, [token, dispatch])
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearUser())
     navigate('/');
   };
 
@@ -29,9 +39,9 @@ function Header({ title, hideSignOutOn = ['/SignIn', '/'] }) {
         <div className="NavLinks">
           <Link to="/SignIn" className="header__nav__link sign-in">
             <FontAwesomeIcon icon={faCircleUser} className="header__nav__link--user-icon" />
-            {title}
+            {user ? user.userName : "Sign In"}
           </Link>
-          {showSignOut && (
+          {showSignOut && token && (
             <button className="header__nav__link sign-out" onClick={handleLogout}>
               <FontAwesomeIcon icon={faRightFromBracket} className="header__nav__link--user-icon" />
               Sign Out

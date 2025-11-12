@@ -26,11 +26,11 @@ function EditNameButton() {
                     <input type="text" id="username"/>
                 </div>
                 <div className="input-group">
-                    <label for="firstname">First name</label>
+                    <label for="firstname">First name</label> /* Utiliser le reducer user.info */
                     <input type="text" disabled id="firstname" placeholder="Tony"/>
                 </div>
                 <div className="input-group">
-                    <label for="lastname">Last name</label>
+                    <label for="lastname">Last name</label> /* Utiliser le reducer user.info */
                     <input type="text" disabled id="lastname" placeholder="Stark"/>
                 </div>
                 <div className='button-container'>
