@@ -1,55 +1,58 @@
-import { loginInitialState } from '../initialState'
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { loginInitialState } from '../initialState';
 
-// Appel de l'API
+// Appel API pour la connexion
 export const loginUser = createAsyncThunk(
-    "login/loginUser",
-    async ({ email, password }, {rejectWithValue}) => {
-        try {
-            const response = await fetch("http://localhost:3001/api/v1/user/login", {
-                method: "POST",
-                headers : {"Content-Type" : "application/json"},
-                body : JSON.stringify({email, password}),
-            });
-            if (!response.ok) {
-                const errorData= await response.json();
-                return rejectWithValue(errorData.message);
-            };
-            const data = await response.json();
-            return data.body;
-        } catch(error) {
-            return rejectWithValue(error.message);
-        };
+  'auth/loginUser',
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        return rejectWithValue(errorData.message);
+      }
+
+      const data = await response.json();
+      // On renvoie le token reçu
+      return data.body.token;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
+  }
 );
 
-
-// Slice avec reducer(s)
-const loginSlice = createSlice({
-    name: "login",
-    initialState : loginInitialState,
-    reducers : {
-        login : (state, action) => {
-            state.token = action.payload.token;
-            state.status = "successed";
-        }
+const authSlice = createSlice({
+  name: 'auth',
+  initialState: loginInitialState,
+  reducers: {
+    logout: (state) => {
+      state.token = null;
+      state.status = 'idle';
+      state.error = null;
     },
-    extraReducers: (builder) => {
+  },
+  extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.token = action.payload.token;
+        state.token = action.payload;
+        state.status = 'succeeded';
+        state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload || "Erreur inconnue";
+        state.status = 'failed';
+        state.error = action.payload || 'Erreur inconnue';
       });
   },
-})
+});
 
-export const {login} = loginSlice.actions;
-export default loginSlice.reducer;
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;
