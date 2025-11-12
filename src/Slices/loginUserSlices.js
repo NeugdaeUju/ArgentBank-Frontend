@@ -1,82 +1,55 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { loginInitialState } from '../initialState'
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
-/* Appel API */
+// Appel de l'API
 export const loginUser = createAsyncThunk(
-    "user/loginUser",
-    async ( { email , password }) => {
-        const res = await fetch('http://localhost:3001', {
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({email , password}),
-        })
-
-        if (!res.ok) throw new Error('Erreur de connxion')
-        const data = await res.json()
-        return data
+    "login/loginUser",
+    async ({ email, password }, {rejectWithValue}) => {
+        try {
+            const response = await fetch("http://localhost:3001/api/v1/user/login", {
+                method: "POST",
+                headers : {"Content-Type" : "application/json"},
+                body : JSON.stringify({email, password}),
+            });
+            if (!response.ok) {
+                const errorData= await response.json();
+                return rejectWithValue(errorData.message);
+            };
+            const data = await response.json();
+            return data.body;
+        } catch(error) {
+            return rejectWithValue(error.message);
+        };
     }
-)
+);
 
-/* Initial State */
-const initialState = {
-    users : [
-        {
-            id: 1,
-            firstname: `Tony`,
-            lastname: `Stark`,
-            email: `tony@stark.com`,
-            password: `password123`
-        },
-        {
-            id: 2,
-            firstname: `Steve`,
-            lastname: `Rogers`,
-            email: `steve@rogers.com`,
-            password: `password456`
-        }
-    ],
-    currentUser: null,
-    error: null,
-    status: 'idle',
-}
 
-/* Reducer(s) */
-const userSlice = createSlice({
-    name: 'user',
-    initialState,
+// Slice avec reducer(s)
+const loginSlice = createSlice({
+    name: "login",
+    initialState : loginInitialState,
     reducers : {
-        loginLocal: (state, action) => {
-            const { email, password} = action.payload
-            const user = state.users.find(
-                (u) =>
-                    u.email === action.payload.email &&
-                    u.password === action.payload.password
-            )
-            if (user) {
-                state.currentUser = user
-                state.error = null
-            } else {
-                state.error = 'Identifiant incorrect'
-            }
-        },
-        logout: (state) => {
-            state.currentUser = null
-        },
+        login : (state, action) => {
+            state.token = action.payload.token;
+            state.status = "successed";
+        }
     },
     extraReducers: (builder) => {
-        builder
-        .addCase(loginUser.pending, (state) => {
-            state.status = 'loading'
-        })
-        .addCase(loginUser.fulfilled, (state, action) => {
-            state.status = 'succeeded'
-            state.currentUser = action.payload
-        })
-        .addCase(loginUser.rejected, (state, action) => {
-            state.status = 'failed'
-            state.error = action.error.message
-        })
-    },
+    builder
+      .addCase(loginUser.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.token = action.payload.token;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload || "Erreur inconnue";
+      });
+  },
 })
 
-export const { loginLocal, logout} = userSlice.actions
-export default  userSlice.reducer
+export const {login} = loginSlice.actions;
+export default loginSlice.reducer;
