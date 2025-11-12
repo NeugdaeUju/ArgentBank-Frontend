@@ -1,14 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { loginInitialState } from '../initialState';
+
+const initialState = {
+    token : null,
+}
 
 // Slice avec reducer(s)
 const logoutSlice = createSlice({
     name: "logout",
-    initialState : {loginInitialState},
+    initialState,
     reducers : {
         logout : (state) => {
             state.token = null;
-            state.status = "idle";
         }
     },
 })
