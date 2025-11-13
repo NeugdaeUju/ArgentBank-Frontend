@@ -28,6 +28,31 @@ export const userProfile = createAsyncThunk(
     }
 )
 
+// Appel API pour envoyer la nouvelle valeur de userName
+export const updateUserName = createAsyncThunk (
+    "user/updateUserName",
+    async({token, userName}, {rejectWithValue}) => {
+        try {
+            const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+                method: "PUT",
+                headers: {
+                    "Authorization" : `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify({userName}),
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+            const data = await response.json()
+            return data.body;
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
 // Intial State
 const initialState = {
     info: null,
@@ -59,6 +84,12 @@ const userSlice = createSlice({
       .addCase(userProfile.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Erreur inconnue';
+      })
+      .addCase(updateUserName.fulfilled, (state, action) => {
+        state.info = action.payload; // on met à jour l'user avec le nouveau userName
+      })
+      .addCase(updateUserName.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 })
