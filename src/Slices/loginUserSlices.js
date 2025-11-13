@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { loginInitialState } from '../initialState';
 
 // Appel API pour la connexion
 export const loginUser = createAsyncThunk(
@@ -26,9 +25,18 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// Initial State
+const initialState = {
+  token: null,
+  currentUser: null,
+  status: "idle",
+  error: null,
+};
+
+// Slice avec reducer(s)
 const authSlice = createSlice({
   name: 'auth',
-  initialState: loginInitialState,
+  initialState,
   reducers: {
     logout: (state) => {
       state.token = null;
