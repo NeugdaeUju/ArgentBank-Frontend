@@ -2,26 +2,26 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/SignInForm.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../Slices/loginUserSlices'; // notre authSlice
+import { loginUser } from '../Slices/loginUserSlices';
+import {userProfile} from '../Slices/userSlice'
 
 function SignInForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token); // authSlice
+  const token = useSelector((state) => state.auth.token);
 
-  // Redirige automatiquement si déjà connecté
+  
   useEffect(() => {
     if (token) {
+      dispatch(userProfile(token));
       navigate('/user');
     }
-  }, [token, navigate]);
+  }, [token , dispatch , navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    // Dispatch de l'action asynchrone pour login
     dispatch(loginUser({ email, password }));
   };
 
