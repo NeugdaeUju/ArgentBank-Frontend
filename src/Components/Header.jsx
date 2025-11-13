@@ -1,37 +1,56 @@
-import { Link, useLocation } from 'react-router-dom'
-import React from 'react'
-import '../css/Header.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import logo from '../assets/argentBankLogo.png'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {useEffect} from 'react'
+import '../css/Header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import logo from '../assets/argentBankLogo.png';
+import { logout } from '../Slices/loginUserSlices';
+import { clearUser, userProfile } from '../Slices/userSlice';
 
-function Header ({title, hideSignOutOn = ['/SignIn', '/']}) {
-    const location = useLocation();
-    const showSignOut = !hideSignOutOn.includes(location.pathname)
-    return (
-        <header>
-            <nav className="header__nav">
-                <Link to="/" className="header__nav__link">
-                    <img src={logo} alt="Argent Bank Logo" className='header__nav__link--logo'/>
-                    <h1 className="sr-only">Argent Bank</h1>
-                </Link>
-                <div className="NavLinks">
-                    <Link to="/SignIn" className="header__nav__link  sign-in">
-                        <FontAwesomeIcon icon={faCircleUser} className='header__nav__link--user-icon'/>{title}
-                    </Link>
-                    {showSignOut && (
-                    <Link to="/" className='header__nav__link sign-out'>
-                        <FontAwesomeIcon icon={faRightFromBracket} className='header__nav__link--user-icon'/>Sign Out
-                    </Link>
-                    )}
-                </div>
-            </nav>
-        </header>
-    )
+function Header({hideSignOutOn = ['/SignIn', '/'] }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const user = useSelector((state) => state.user.info)
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(userProfile(token))
+    }
+  }, [token, dispatch])
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(clearUser())
+    navigate('/');
+  };
+
+  const showSignOut = !hideSignOutOn.includes(location.pathname);
+
+  return (
+    <header>
+      <nav className="header__nav">
+        <Link to="/" className="header__nav__link">
+          <img src={logo} alt="Argent Bank Logo" className="header__nav__link--logo" />
+          <h1 className="sr-only">Argent Bank</h1>
+        </Link>
+        <div className="NavLinks">
+          <Link to="/SignIn" className="header__nav__link sign-in">
+            <FontAwesomeIcon icon={faCircleUser} className="header__nav__link--user-icon" />
+            {user ? user.userName : "Sign In"}
+          </Link>
+          {showSignOut && token && (
+            <button className="header__nav__link sign-out" onClick={handleLogout}>
+              <FontAwesomeIcon icon={faRightFromBracket} className="header__nav__link--user-icon" />
+              Sign Out
+            </button>
+          )}
+        </div>
+      </nav>
+    </header>
+  );
 }
 
-export default Header
-
-/*
- <img src="" alt="Argent Bank Logo"/>*/
+export default Header;

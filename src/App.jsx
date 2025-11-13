@@ -5,14 +5,17 @@ import SignIn from './Pages/SignIn.jsx'
 import User from './Pages/User.jsx'
 import Footer from './Components/Footer.jsx'
 import Transaction from './Pages/Transaction.jsx'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const token = useSelector((state) => state.auth.token);
+
   return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/user" element={token ? <User /> : <SignIn/>} />
           <Route path="/user/transaction" element={<Transaction />} />
         </Routes>
       <Footer/>
