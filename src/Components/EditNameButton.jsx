@@ -19,12 +19,21 @@ function EditNameButton() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.info);
     const token = useSelector((state) => state.auth.token)
+    console.log("token =", token)
+    console.log("user =", user)
+    if(user) {
+        console.log("user name =", user.userName)
+    }
 
     useEffect(() => {
         if (token) {
             dispatch(userProfile(token))
         }
     }, [token, dispatch])
+
+    if(!user) {
+        return <div>Chargement du profile...</div>
+    }
 
     return( 
         <>

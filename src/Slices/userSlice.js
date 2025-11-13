@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 // Appel API pour obtenir les data du user
-const userProfile = createAsyncThunk(
+export const userProfile = createAsyncThunk(
     'user/userProfile',
     async( token, {rejectWithValue}) => {
         try {
@@ -18,8 +18,8 @@ const userProfile = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
             const data = await response.json()
-            console.log('Data fetch:', data); // <--- log des données reçues
-            console.log(data.body.userName)
+            // console.log('Data fetch:', data); // <--- log des données reçues
+            // console.log(data.body.userName)
             return data.body;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -64,5 +64,4 @@ const userSlice = createSlice({
 })
 
 export const { clearUser } = userSlice.actions;
-export {userProfile};
 export default userSlice.reducer;
