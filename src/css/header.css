@@ -40,3 +40,9 @@ header div {
 .sign-in:hover {
     text-decoration: underline;
 }
+
+.sign-out {
+    border : none;
+    background-color: #fff;
+    margin-right: 0.5rem;
+}
