@@ -1,9 +1,9 @@
 import Hero from '../Components/Hero.jsx'
 import Feature from '../Components/Feature.jsx'
 import Header from '../Components/Header.jsx'
-import image1 from '../assets/icon-chat.png'
-import image2 from '../assets/icon-money.png'
-import image3 from '../assets/icon-security.png'
+import image1 from '../../public/icon-chat.webp'
+import image2 from '../../public//icon-money.webp'
+import image3 from '../../public/icon-security.webp'
 
 
 function Home() {

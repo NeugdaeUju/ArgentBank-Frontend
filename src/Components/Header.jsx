@@ -4,7 +4,7 @@ import {useEffect} from 'react'
 import '../css/Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import logo from '../assets/argentBankLogo.png';
+import logo from '../../public/argentBankLogo.webp';
 import { logout } from '../Slices/loginUserSlices';
 import { clearUser, userProfile } from '../Slices/userSlice';
 
