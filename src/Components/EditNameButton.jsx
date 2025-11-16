@@ -53,15 +53,15 @@ function EditNameButton() {
                 Edit Name</button>
             <form class={`edit-name-form ${isEditing ? "visible" : "hidden"}`}>
                 <div className="input-group">
-                    <label for="username">User name</label>
+                    <label htmlFor="username">User name</label>
                     <input type="text" id="username" placeholder={user.userName} onChange={(e) => setUserName(e.target.value)}/>
                 </div>
                 <div className="input-group">
-                    <label for="firstname">First name</label>
+                    <label htmlFor="firstname">First name</label>
                     <input type="text" disabled id="firstname" value={user.firstName}/>
                 </div>
                 <div className="input-group">
-                    <label for="lastname">Last name</label>
+                    <label htmlFor="lastname">Last name</label>
                     <input type="text" disabled id="lastname" value={user.lastName}/>
                 </div>
                 <div className='button-container'>
