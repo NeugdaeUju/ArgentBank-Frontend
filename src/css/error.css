@@ -1,0 +1,26 @@
+.error_page {
+    background-color: #12002b;
+    padding : 50px 0;
+}
+
+.error_title {
+    color : #fff;
+    font-size : 12rem;
+    margin : 0;
+    margin-bottom : 30px;
+}
+
+.error_text {
+    color : #fff;
+    margin-bottom : 50px;
+    font-size : 1.5rem;
+}
+
+.error_link {
+    color : #fff;
+
+}
+
+.error_link:hover {
+    text-decoration: underline;
+}
