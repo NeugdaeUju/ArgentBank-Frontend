@@ -47,3 +47,7 @@ header div {
     margin-right: 0.5rem;
     cursor: pointer;
 }
+
+svg {
+    margin : 0 0.5rem;
+}

@@ -2,8 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {useEffect} from 'react'
 import '../css/Header.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { FaCircleUser, FaRightFromBracket } from 'react-icons/fa6';
 import logo from '../../public/argentBankLogo.webp';
 import { logout } from '../Slices/loginUserSlices';
 import { clearUser, userProfile } from '../Slices/userSlice';
@@ -38,12 +37,12 @@ function Header({hideSignOutOn = ['/SignIn', '/'] }) {
         </Link>
         <div className="NavLinks">
           <Link to="/SignIn" className="header__nav__link sign-in">
-            <FontAwesomeIcon icon={faCircleUser} className="header__nav__link--user-icon" />
+            <FaCircleUser className="header__nav__link--user-icon" />
             {user ? user.userName : "Sign In"}
           </Link>
           {showSignOut && token && (
             <button className="header__nav__link sign-out" onClick={handleLogout}>
-              <FontAwesomeIcon icon={faRightFromBracket} className="header__nav__link--user-icon" />
+              <FaRightFromBracket className="header__nav__link--user-icon" />
               Sign Out
             </button>
           )}
