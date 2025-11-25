@@ -79,14 +79,14 @@ const userSlice = createSlice({
       })
       .addCase(userProfile.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.info = action.payload; // <-- ici on stocke les infos de l'utilisateur
+        state.info = action.payload;
       })
       .addCase(userProfile.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Erreur inconnue';
       })
       .addCase(updateUserName.fulfilled, (state, action) => {
-        state.info = action.payload; // on met à jour l'user avec le nouveau userName
+        state.info = action.payload;
       })
       .addCase(updateUserName.rejected, (state, action) => {
         state.error = action.payload;
