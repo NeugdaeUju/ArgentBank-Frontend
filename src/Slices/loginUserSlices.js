@@ -27,7 +27,7 @@ export const loginUser = createAsyncThunk(
 
 // Initial State
 const initialState = {
-  token: null,
+  token: sessionStorage.getItem("token") || null,
   currentUser: null,
   status: "idle",
   error: null,
@@ -42,6 +42,7 @@ const authSlice = createSlice({
       state.token = null;
       state.status = 'idle';
       state.error = null;
+      sessionStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
@@ -54,6 +55,7 @@ const authSlice = createSlice({
         state.token = action.payload;
         state.status = 'succeeded';
         state.error = null;
+        sessionStorage.setItem("token", action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';
