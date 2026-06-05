@@ -1,4 +1,4 @@
-import '../css/EditNameButton.css'
+import '../css/editNameButton.css'
 import {useState , useEffect} from 'react'
 import {useDispatch , useSelector} from'react-redux'
 import {userProfile} from '../Slices/userSlice'
