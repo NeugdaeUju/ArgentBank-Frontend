@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {useEffect} from 'react'
-import '../css/Header.css';
+import '../css/header.css';
 import { FaCircleUser, FaRightFromBracket } from 'react-icons/fa6';
 import logo from '../../public/argentBankLogo.webp';
 import { logout } from '../Slices/loginUserSlices';
