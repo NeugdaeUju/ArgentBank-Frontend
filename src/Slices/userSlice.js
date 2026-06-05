@@ -5,7 +5,7 @@ export const userProfile = createAsyncThunk(
     'user/userProfile',
     async( token, {rejectWithValue}) => {
         try {
-            const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+            const response = await fetch(import.meta.env.VITE_API_URL + '/api/v1/user/profile', {
                 method: "GET",
                 headers: {
                     "Authorization" : `Bearer ${token}`,
@@ -33,7 +33,7 @@ export const updateUserName = createAsyncThunk (
     "user/updateUserName",
     async({token, userName}, {rejectWithValue}) => {
         try {
-            const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+            const response = await fetch(import.meta.env.VITE_API_URL + '/api/v1/user/profile', {
                 method: "PUT",
                 headers: {
                     "Authorization" : `Bearer ${token}`,
